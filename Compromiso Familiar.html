@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compromiso Familiar - Buenos Aires Ciudad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-teal: #46B4A6;
+            --secondary-teal: #A8DCD6;
+            --dark-navy: #1A314D;
+            --bg-light: #F7FBFA;
+            --white: #FFFFFF;
+            --accent-yellow: #FFD700;
+            --accent-orange: #F39C12;
+            --text-gray: #4A4A4A;
+            --light-gray: #f4f4f4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--text-gray);
+            background-color: var(--white);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark-navy);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-navy);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-teal);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            padding: 80px 5% 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #2c4a70 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            background: var(--primary-teal);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: var(--primary-teal);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.3s, background 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: #3a968a;
+        }
+
+        .hero-image {
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero-image i {
+            font-size: 15rem;
+            color: rgba(255,255,255,0.1);
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--dark-navy);
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title .bar {
+            width: 80px;
+            height: 5px;
+            background: var(--primary-teal);
+            margin: 0 auto;
+        }
+
+        /* --- ACORDEÓN DE MOTIVOS --- */
+        .reasons-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .reason-box {
+            background: var(--bg-light);
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            border-left: 6px solid var(--primary-teal);
+        }
+
+        .reason-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--dark-navy);
+            transition: background 0.3s;
+        }
+
+        .reason-header:hover {
+            background: var(--secondary-teal);
+        }
+
+        .reason-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+            background: var(--white);
+        }
+
+        .reason-content.active {
+            max-height: 500px;
+            padding: 20px;
+        }
+
+        .reason-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        /* --- SECCIÓN FLYER --- */
+        .flyer-section {
+            background: #fdfdfd;
+            border: 2px solid #eee;
+            border-radius: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flyer-header {
+            background: var(--accent-yellow);
+            padding: 10px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .flyer-body {
+            padding: 40px;
+        }
+
+        .flyer-logo-area {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .no-phone-icon {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 4rem;
+            color: var(--primary-teal);
+        }
+
+        .no-phone-icon .fa-slash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ff4d4d;
+            font-size: 4rem;
+        }
+
+        .flyer-main-title {
+            color: var(--dark-navy);
+            font-size: 2.5rem;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .flyer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .flyer-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            background: white;
+        }
+
+        .stats-box {
+            background: var(--dark-navy);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            background: var(--primary-teal);
+            padding: 5px 15px;
+            border-radius: 50%;
+            font-weight: 800;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .qr-area {
+            background: var(--bg-light);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .qr-image {
+            width: 140px;
+            height: 140px;
+            background: white;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .qr-text {
+            max-width: 400px;
+        }
+
+        /* --- SI YA USAN CELULAR: TABS --- */
+        .tabs-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: var(--light-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        .tab-btn.active {
+            background: var(--dark-navy);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark-navy);
+            color: var(--white);
+            padding: 60px 5% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo h3 {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--secondary-teal);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .flyer-grid { grid-template-columns: 1fr; }
+            .hero-image { display: none; }
+            .nav-links { display: none; }
+            .qr-area { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Educación BA</span>
+        </a>
+        <div class="nav-links">
+            <a href="#razones">¿Por qué demorar?</a>
+            <a href="#flyer">Compromiso</a>
+            <a href="#ya-usan">Si ya usan</a>
+            <a href="#actividades">Propuestas</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hero-content">
+            <span class="hero-tag">NIVEL INICIAL Y PRIMARIO</span>
+            <h1>Compromiso Familiar por estudiantes sin celular</h1>
+            <p>Todavía no a los dispositivos digitales. Acompañemos a nuestros niños de manera gradual hacia un uso responsable.</p>
+            <a href="#flyer" class="cta-button">Sumate al Compromiso</a>
+        </div>
+        <div class="hero-image">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <div style="position: absolute; top: 50%; left: 50%; width: 300px; height: 10px; background: #ff4d4d; transform: translate(-50%, -50%) rotate(-45deg);"></div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN 1: POR QUÉ DEMORAR EL USO -->
+    <section id="razones">
+        <div class="section-title">
+            <h2>¿Por qué demorar el uso del celular?</h2>
+            <p>Haz clic en cada punto para ver el detalle</p>
+            <div class="bar"></div>
+        </div>
+
+        <div class="reasons-container">
+            <div class="reason-box">
+                <div class="reason-header" onclick="toggleReason(this)">
+                    <span>1. El cerebro todavía está creciendo</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="reason-content">
+                    <p>Durante la infancia, el cerebro está en pleno desarrollo cognitivo y emocional. El uso temprano e intensivo:</p>
+                    <ul>
+                        <li>Produce una <strong>atención fragmentada</strong>.</li>
+                        <li>Dificulta el desarrollo del lenguaje y la memoria.</li>
+                        <li>Aumenta riesgos para la salud mental al reemplazar el juego y el descanso.</li>
+                        <li>Afecta la <strong>autorregulación</strong> (tolerar la frustración o esperar turnos).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="reason-box">
+                <div class="reason-header" onclick="toggleReason(this)">
+                    <span>2. Impacto en descanso, salud y vínculos</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="reason-content">
+                    <p>Los vínculos presenciales son insustituibles en esta etapa. El celular puede:</p>
+                    <ul>
+                        <li>Aumentar la irritabilidad y reducir el movimiento físico.</li>
+                        <li>Afectar gravemente el sueño si se usa en horarios nocturnos.</li>
+                        <li>Quitar tiempo valioso para el encuentro cara a cara con otras personas.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="reason-box">
+                <div class="reason-header" onclick="toggleReason(this)">
+                    <span>3. Contenido no adecuado para su edad</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="reason-content">
+                    <p>Exponer a niños a smartphones es exponerlos a situaciones para las que no están preparados:</p>
+                    <ul>
+                        <li>Mensajes agresivos y <strong>presiones sociales</strong>.</li>
+                        <li>Comparación permanente a través de imágenes y opiniones en redes.</li>
+                        <li>Contacto con personas desconocidas.</li>
+                        <li><strong>Ciberacoso</strong> y contenidos inapropiados.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: FLYER ACTUALIZADO CON QR -->
+    <section id="flyer" style="background: var(--bg-light);">
+        <div class="flyer-section">
+            <div class="flyer-header">Protección digital infantil y adolescente</div>
+            <div class="flyer-body">
+                <div class="flyer-logo-area">
+                    <div class="no-phone-icon">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <i class="fa-solid fa-slash"></i>
+                    </div>
+                    <h2 class="flyer-main-title">Compromiso Familiar</h2>
+                    <p style="font-weight: 700; color: #555; margin-top: 5px;">por estudiantes sin celular</p>
+                </div>
+
+                <p style="text-align: center; margin-bottom: 30px;">Te invitamos a firmar un acuerdo entre familias para promover el bienestar socioemocional de niños, niñas y adolescentes.</p>
+
+                <div class="flyer-grid">
+                    <div class="flyer-card">
+                        <i class="fa-solid fa-calendar-xmark" style="font-size: 2rem; color: var(--accent-orange); margin-bottom: 10px;"></i>
+                        <p><strong>Postegar la entrega</strong> del celular inteligente hasta el comienzo de la secundaria.</p>
+                    </div>
+                    <div class="flyer-card">
+                        <i class="fa-solid fa-hand-dots" style="font-size: 2rem; color: var(--primary-teal); margin-bottom: 10px;"></i>
+                        <p><strong>Establecer edad mínima</strong> para el uso de redes sociales (sugerido entre 13 y 16 años).</p>
+                    </div>
+                </div>
+
+                <div class="stats-box">
+                    <h3 style="margin-bottom: 20px; color: var(--accent-yellow);"><i class="fa-solid fa-lightbulb"></i> ¿Sabías qué?</h3>
+                    <div class="stat-item">
+                        <div class="stat-number">4 de 10</div>
+                        <p>estudiantes sienten <strong>ansiedad o angustia</strong> por el uso excesivo del celular y las redes sociales.</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5 de 10</div>
+                        <p>estudiantes <strong>quieren dejar de usar</strong> el celular y no pueden.</p>
+                    </div>
+                    <p style="font-size: 0.7rem; opacity: 0.7; margin-top: 10px;">Fuente: Unidad de Evaluación y Calidad Educativa de la Ciudad de Buenos Aires.</p>
+                </div>
+            </div>
+            
+            <div class="qr-area">
+                <div class="qr-image">
+                    <!-- Usando una imagen de QR real del servicio educativo si estuviera disponible, aquí simulado con API de QR generativo -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://escuelaenfamilia.bue.edu.ar/" alt="QR para firmar el compromiso">
+                </div>
+                <div class="qr-text">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>Escaneá el código para sumarte al compromiso</strong></p>
+                    <p>Accede directamente al formulario de acuerdos y recursos de formación para familias.</p>
+                    <a href="https://escuelaenfamilia.bue.edu.ar/" target="_blank" class="cta-button" style="margin-top: 15px; padding: 10px 25px;">Acceder al sitio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: SI YA USAN EL CELULAR -->
+    <section id="ya-usan">
+        <div class="section-title">
+            <h2>¿Y si ya usan el celular?</h2>
+            <p>5 claves para cuidarlos mejor</p>
+            <div class="bar"></div>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="showTab(0)">1. Acuerdos</button>
+                <button class="tab-btn" onclick="showTab(1)">2. Tiempos</button>
+                <button class="tab-btn" onclick="showTab(2)">3. Diálogo</button>
+                <button class="tab-btn" onclick="showTab(3)">4. Control</button>
+                <button class="tab-btn" onclick="showTab(4)">5. Otros</button>
+            </div>
+
+            <div id="tab-0" class="tab-content active">
+                <h3>Acordar con otras familias</h3>
+                <p>Hablar con amigos, compañeros de escuela o club para acordar momentos comunes de desconexión. <strong>Cuando los acuerdos son compartidos, es más fácil sostenerlos.</strong></p>
+            </div>
+            <div id="tab-1" class="tab-content">
+                <h3>Tiempos y momentos sin celular</h3>
+                <p>Definir momentos libres de pantallas (comidas, estudio, encuentros). <strong>Importante:</strong> Que por la noche el celular no permanezca en la habitación.</p>
+            </div>
+            <div id="tab-2" class="tab-content">
+                <h3>Mantener un diálogo constante</h3>
+                <p>Preguntar y conversar sobre lo que miran o juegan. Acompañar no es espiar, es estar presentes mediando sus experiencias digitales.</p>
+            </div>
+            <div id="tab-3" class="tab-content">
+                <h3>Utilizar control parental</h3>
+                <p>Utilizar aplicaciones para monitorear el tiempo de uso, restringir compras y evitar el acceso a contenido inapropiado o desconocidos.</p>
+            </div>
+            <div id="tab-4" class="tab-content">
+                <h3>Promover actividades alternativas</h3>
+                <p>El bienestar digital se construye fuera de las pantallas. El juego, el deporte y la lectura siguen siendo fundamentales para su desarrollo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: PROPUESTAS LIBRES DE PANTALLAS -->
+    <section id="actividades" style="background: var(--bg-light);">
+        <div class="section-title">
+            <h2>Propuestas libres de pantallas</h2>
+            <p>Ideas para volver a encontrarnos</p>
+            <div class="bar"></div>
+        </div>
+
+        <div class="reasons-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div style="background: white; padding: 25px; border-radius: 15px; border-bottom: 4px solid var(--accent-orange);">
+                <h4 style="margin-bottom: 15px;"><i class="fa-solid fa-book-open"></i> Rituales Cotidianos</h4>
+                <ul style="font-size: 0.9rem; list-style: none;">
+                    <li>• 20 min de lectura compartida.</li>
+                    <li>• Juegos de mesa (ajedrez, tutti frutti).</li>
+                    <li>• Bailes en cadena.</li>
+                </ul>
+            </div>
+            <div style="background: white; padding: 25px; border-radius: 15px; border-bottom: 4px solid var(--primary-teal);">
+                <h4 style="margin-bottom: 15px;"><i class="fa-solid fa-utensils"></i> En la Cocina</h4>
+                <p style="font-size: 0.9rem;">Elegir una receta, leerla juntos, buscar ingredientes y cocinar en equipo promueve la colaboración y la lectura.</p>
+            </div>
+            <div style="background: white; padding: 25px; border-radius: 15px; border-bottom: 4px solid var(--dark-navy);">
+                <h4 style="margin-bottom: 15px;"><i class="fa-solid fa-tree"></i> Al Aire Libre</h4>
+                <ul style="font-size: 0.9rem; list-style: none;">
+                    <li>• Búsqueda del tesoro en la plaza.</li>
+                    <li>• Armar y remontar un barrilete.</li>
+                    <li>• Picnic con juegos de cartas.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h3>Buenos Aires Ciudad</h3>
+                <p>Ministerio de Educación</p>
+                <div style="margin-top: 20px; font-size: 1.5rem; display: flex; gap: 15px;">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces Útiles</h4>
+                <a href="https://escuelaenfamilia.bue.edu.ar/">Escuela en Familia</a>
+                <a href="#">Guía de Protección Digital</a>
+                <a href="#">Talleres para Familias</a>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <p>Para más información sobre el compromiso familiar y estrategias escolares.</p>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem;">
+            <p>&copy; 2024 Gobierno de la Ciudad Autónoma de Buenos Aires.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleReason(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('i');
+            content.classList.toggle('active');
+            icon.classList.toggle('fa-chevron-up');
+            icon.classList.toggle('fa-chevron-down');
+        }
+
+        function showTab(index) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('tab-' + index).classList.add('active');
+            document.querySelectorAll('.tab-btn')[index].classList.add('active');
+        }
+    </script>
+</body>
+</html>
